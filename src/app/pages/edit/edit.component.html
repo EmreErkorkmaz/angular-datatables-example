@@ -1,0 +1,40 @@
+<form (ngSubmit)="editNewUser(formValues)" #formValues="ngForm">
+  <div class="form-row row my-2">
+    <div class="form-group col-md-6">
+      <label class="mb-1" for="inputEmail4">Name</label>
+      <input [ngModel]="user.name" name="name" type="text" class="form-control" id="name" placeholder="Name" required #name="ngModel">
+      <span *ngIf="!name.valid && name.dirty" class="help-block">Please enter a name.</span>
+    </div>
+    <div class="form-group col-md-6">
+      <label class="mb-1" for="inputPassword4">Surname</label>
+      <input [ngModel]="user.surname" name="surname" type="text" class="form-control" id="surname" placeholder="Surname" required #surname="ngModel">
+      <span *ngIf="!surname.valid && surname.dirty" class="help-block">Please enter a surname.</span>
+    </div>
+  </div>
+  <div class="form-row row my-2">
+    <div class="form-group">
+      <label class="mb-1">Birth Date</label>
+      <input [ngModel]="user.birthDate" name="birthday" type="date" class="form-control" id="day" min="1930-01-01" required #birthday="ngModel">
+      <span *ngIf="!birthday.valid && birthday.dirty" class="help-block">Please enter your birth date.</span>
+    </div>
+  </div>
+  <div class="form-group my-2">
+    <label class="mb-1">Country</label>
+    <select [ngModel]="user.country" name="country" class="form-control" required #country="ngModel">
+      <option *ngFor="let country of countries">{{country}}</option>
+    </select>
+    <span *ngIf="!country.valid && country.dirty" class="help-block">Please select your country.</span>
+  </div>
+
+  <div class="form-group my-2">
+    <label class="mb-1" for="inputAddress2">Address</label>
+    <input [ngModel]="user.adress" name="adress" type="text" class="form-control" id="adress" placeholder="Apartment, studio, or floor" required #adress="ngModel">
+    <span *ngIf="!adress.valid && adress.dirty" class="help-block">Please enter your address.</span>
+  </div>
+  <div class="form-group my-2">
+    <label class="mb-1" for="inputCity">Phone Number</label>
+    <input [ngModel]="user.phoneNumber" name="phone" type="tel" placeholder="000-111-22-33" mask="000-000-00-00" class="form-control" id="phone" minlength="10" required #phone="ngModel">
+    <span *ngIf="!phone.valid && phone.dirty" class="help-block">Please enter your phone number.</span>
+  </div>
+  <button type="submit" class="btn btn-success my-2" [disabled]="!formValues.valid" >Confirm</button>
+</form>
